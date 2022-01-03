@@ -6,6 +6,7 @@ import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
 import { apiRequest } from "./services/apiService";
 import Modal from "./components/Modal/Modal";
+import ScrollTopArrow from "./components/ScrollTopArrow/ScrollTopArrow";
 
 import { info } from "@pnotify/core";
 import "@pnotify/core/dist/PNotify.css";
@@ -88,6 +89,7 @@ class App extends Component {
             <img src={this.state.largeImage} alt="large image" />
           </Modal>
         )}
+        <ScrollTopArrow borderRadius={"50%"} color={"white"} bgColor={"#3f51b5"} />
       </>
     );
   }

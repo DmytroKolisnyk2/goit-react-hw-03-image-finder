@@ -1,0 +1,18 @@
+.arrow {
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  position: fixed;
+  bottom: 30px;
+  left: 20px;
+  width: 43px;
+  height: 43px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: 250ms linear;
+}
+.arrow:hover{
+  opacity: 1;
+  transform: scale(1.05);
+}
+
