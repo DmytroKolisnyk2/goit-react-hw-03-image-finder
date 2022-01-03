@@ -5,6 +5,7 @@
 }
 
 .ImageGalleryItem-image {
+cursor: pointer;
   width: 100%;
   height: 260px;
   object-fit: cover;
@@ -13,5 +14,4 @@
 
 .ImageGalleryItem-image:hover {
   transform: scale(1.03);
-  cursor: zoom-in;
 }
