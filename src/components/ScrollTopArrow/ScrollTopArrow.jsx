@@ -3,7 +3,6 @@ import styles from "./ScrollTopArrow.module.css";
 import PropTypes from "prop-types";
 
 export default function ScrollTopArrow({ color, bgColor, borderRadius }) {
-  console.log(color);
   return (
     <div
       onClick={() =>

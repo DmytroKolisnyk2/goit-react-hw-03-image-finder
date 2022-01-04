@@ -22,6 +22,7 @@ class App extends Component {
     error: "",
     largeImage: "",
     showModal: false,
+    description: "",
   };
 
   componentDidMount() {
@@ -66,9 +67,9 @@ class App extends Component {
       .finally(() => this.setState({ isLoading: false }));
   };
 
-  setLargeImage = (imgUrl) => {
+  setLargeImage = (imgUrl, description) => {
     this.toggleModal();
-    this.setState({ largeImage: imgUrl });
+    this.setState({ largeImage: imgUrl, description: description });
   };
 
   toggleModal = () => this.setState((prevState) => ({ showModal: !prevState.showModal }));
@@ -86,7 +87,7 @@ class App extends Component {
         {this.state.showLoadMoreButton && <Button onClick={this.onClickLoadMore} />}
         {this.state.showModal && (
           <Modal onClick={this.toggleModal}>
-            <img src={this.state.largeImage} alt="large image" />
+            <img src={this.state.largeImage} alt={this.state.description} />
           </Modal>
         )}
         <ScrollTopArrow borderRadius={"50%"} color={"white"} bgColor={"#3f51b5"} />
