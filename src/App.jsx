@@ -31,11 +31,15 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.query !== prevState.query) {
-      this.findImages();
-      window.scrollTo(0, 0);
+      this.findImages().then(() => window.scrollTo(0, 0));
     }
     if (this.state.page !== prevState.page && this.state !== 1) {
-      this.findImages();
+      this.findImages().then(() =>
+        window.scrollBy({
+          top: 260,
+          behavior: "smooth",
+        })
+      );
     }
   }
 
@@ -47,7 +51,7 @@ class App extends Component {
     this.setState((prevState) => ({ page: prevState.page + 1 }));
   };
 
-  findImages = () => {
+  findImages = async () => {
     const { page } = this.state;
     this.setState({ isLoading: true, showLoadMoreButton: false });
 
@@ -58,10 +62,6 @@ class App extends Component {
           showLoadMoreButton: data.hits.length === 12 && true,
           error: data.hits.length === 0 && "Opps, nothing found",
         }));
-        window.scrollBy({
-          top: 260,
-          behavior: "smooth",
-        });
       })
       .catch(() => this.setState({ error: "Oops, something went wrong" }))
       .finally(() => this.setState({ isLoading: false }));
