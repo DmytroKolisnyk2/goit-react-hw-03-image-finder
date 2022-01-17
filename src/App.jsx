@@ -1,16 +1,18 @@
 import React, { Component } from "react";
-import "./styles/App.scss";
+import { info } from "@pnotify/core";
+
 import Searchbar from "./components/Searchbar/Searchbar";
 import Button from "./components/Button/Button";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
-import { apiRequest } from "./services/apiService";
 import Modal from "./components/Modal/Modal";
 import ScrollTopArrow from "./components/ScrollTopArrow/ScrollTopArrow";
 
-import { info } from "@pnotify/core";
+import "./styles/App.scss";
 import "@pnotify/core/dist/PNotify.css";
 import "@pnotify/core/dist/BrightTheme.css";
+
+import { apiRequest } from "./services/apiService";
 
 class App extends Component {
   state = {
@@ -75,19 +77,22 @@ class App extends Component {
   toggleModal = () => this.setState((prevState) => ({ showModal: !prevState.showModal }));
 
   render() {
+    const { error, photoData, showLoadMoreButton, showModal, isLoading, largeImage, description } =
+      this.state;
+
     return (
       <>
         <Searchbar onSubmit={this.onSubmit} />
-        {this.state.error && <h2 className="errorMesage">{this.state.error}</h2>}
-        {!this.state.error && (
-          <ImageGallery setLargeImage={this.setLargeImage} photoData={this.state.photoData}>
-            {this.state.isLoading && <Loader />}
+        {error && <h2 className="errorMesage">{error}</h2>}
+        {!error && (
+          <ImageGallery setLargeImage={this.setLargeImage} photoData={photoData}>
+            {isLoading && <Loader />}
           </ImageGallery>
         )}
-        {this.state.showLoadMoreButton && <Button onClick={this.onClickLoadMore} />}
-        {this.state.showModal && (
+        {showLoadMoreButton && <Button onClick={this.onClickLoadMore} />}
+        {showModal && (
           <Modal onClick={this.toggleModal}>
-            <img src={this.state.largeImage} alt={this.state.description} />
+            <img src={largeImage} alt={description} />
           </Modal>
         )}
         <ScrollTopArrow borderRadius={"50%"} color={"white"} bgColor={"#3f51b5"} />
