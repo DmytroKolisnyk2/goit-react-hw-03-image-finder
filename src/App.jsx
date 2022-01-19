@@ -35,7 +35,7 @@ class App extends Component {
     if (this.state.query !== prevState.query) {
       this.findImages().then(() => window.scrollTo(0, 0));
     }
-    if (this.state.page !== prevState.page && this.state !== 1) {
+    if (this.state.page !== prevState.page && this.state.page !== 1) {
       this.findImages().then(() =>
         window.scrollBy({
           top: 260,
